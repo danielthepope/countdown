@@ -1,0 +1,20 @@
+{
+  "name": "countdown",
+  "version": "0.0.0",
+  "description": "A game bearing no resemblance to the show on Channel 4 whatsoever",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://danielthepope@github.com/danielthepope/countdown.git"
+  },
+  "author": "Daniel Pope",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielthepope/countdown/issues"
+  },
+  "homepage": "https://github.com/danielthepope/countdown",
+  "dependencies": {}
+}
