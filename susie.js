@@ -1,20 +1,25 @@
 var fs = require('fs');
 var util = require('util');
-var words = [];
+var words = {};
 
 console.log('loading word file');
 
 var init = function() {
 	var wordData = fs.readFileSync('resources/words.txt', 'utf8');
-	var aAllwords = wordData.split(' ');
-	console.log(util.format('%d words in the word file', aAllwords.length));
-	// Valid words are 9 letters or less
-	function is9LettersOrLess(element, index, array) {
-		return element.length <= 9;
-	}
-	var aFiltered = aAllwords.filter(is9LettersOrLess);
-	console.log(util.format('%d filtered words', aFiltered.length));
-	words = aFiltered;
+	var allWords = wordData.split(' ');
+	var letterCount = [];
+	console.log(util.format('%d words in the word file', allWords.length));
+	allWords.forEach(function(element, index, array) {
+		var len = element.length;
+		if (words[len] === undefined) {
+			words[len] = [];
+			letterCount.push(len);
+		}
+		words[len].push(element);
+	});
+	letterCount.forEach(function(element, index, array) {
+		console.log(util.format('%dx %s letter words', words[element].length, element));
+	});
 }();
 
 console.log('ready');
@@ -37,25 +42,28 @@ function solve(anagram) {
 	function existsInAnagram(element, index, array) {
 		var sortedWord = element.split('').sort();
 		var i;
-		for (i = 0; i < 9; i++) {
+		for (i = 0; i < sortedAnagram.length; i++) {
 			if (sortedWord[0] === sortedAnagram[i]) sortedWord = sortedWord.slice(1);
 			if (sortedWord.length === 0) return true;
 		}
 		return false;
 	}
-	function sortByLength(a, b) {
-		return b.length - a.length;
-	}
-	var possibilities = words.filter(existsInAnagram).sort(sortByLength);
-	var longestWordLength = possibilities[0].length;
-	var output = [];
+	var possibilities = [];
 	var i;
-	for (i = 0; i < possibilities.length; i++) {
-		if (possibilities[i].length === longestWordLength) output.push(possibilities[i]);
-		else break;
+	var countedWords = 0;
+	for (i = sortedAnagram.length; i >= 1; i--) {
+		if (words[i] === undefined) continue;
+		words[i].forEach(function(element, index, array) {
+			if (existsInAnagram(element)) possibilities.push(element);
+		});
+		countedWords += words[i].length;
+		if (possibilities.length !== 0) {
+			console.log(util.format('%dms, searched %d words. Best answer has %d letters:',
+				new Date() - startTime, countedWords, i));
+			break;
+		}
 	}
-	console.log(util.format('%dms', new Date() - startTime));
-	return output;
+	return possibilities.sort();
 }
 
 exports.solve = solve;
