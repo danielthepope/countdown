@@ -16,5 +16,7 @@
     "url": "https://github.com/danielthepope/countdown/issues"
   },
   "homepage": "https://github.com/danielthepope/countdown",
-  "dependencies": {}
+  "dependencies": {
+    "sprintf-js": "^1.0.2"
+  }
 }

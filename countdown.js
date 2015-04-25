@@ -11,7 +11,15 @@ process.stdin.on('data', function(text) {
 	if (anagram === 'EXIT') {
 		process.exit();
 	} else {
-		console.log(susie.solve(anagram));
+		var startTime = new Date();
+		var result = susie.solve(anagram);
+		if (result.length > 0) {
+			console.log(util.format('%dms, best answer has %d letters:',
+				new Date() - startTime, result[0].length));
+			console.log(result);
+		} else {
+			console.log('No results found.');
+		}
 		console.log('another? type EXIT to exit');
 	}
 });

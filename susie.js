@@ -1,14 +1,13 @@
 var fs = require('fs');
 var util = require('util');
+var sprintf = require('sprintf-js').sprintf;
 var words = {};
 
-console.log('loading word file');
-
-var init = function() {
+var Susie = function() {
+	console.log('loading word file');
 	var wordData = fs.readFileSync('resources/words.txt', 'utf8');
 	var allWords = wordData.split(' ');
 	var letterCount = [];
-	console.log(util.format('%d words in the word file', allWords.length));
 	allWords.forEach(function(element, index, array) {
 		var len = element.length;
 		if (words[len] === undefined) {
@@ -17,12 +16,16 @@ var init = function() {
 		}
 		words[len].push(element);
 	});
-	letterCount.forEach(function(element, index, array) {
-		console.log(util.format('%dx %s letter words', words[element].length, element));
-	});
-}();
+	console.log(util.format('%d words in the word file:', allWords.length));
+	letterCount.sort(numberSort).forEach(function(element, index, array) {
+		console.log(sprintf('%6d %2s letter words', words[element].length, element));
+	});	
+	console.log('ready');
+};
 
-console.log('ready');
+function numberSort(a,b) {
+	return a - b;
+}
 
 /**
  * e.g.
@@ -36,10 +39,9 @@ console.log('ready');
  *     Check word length. If 0, return true.
  *   return false
  */
-function solve(anagram) {
-	var startTime = new Date();
+Susie.prototype.solve = function(anagram) {
 	var sortedAnagram = anagram.toUpperCase().split('').sort();
-	function existsInAnagram(element, index, array) {
+	function existsInAnagram(element) {
 		var sortedWord = element.split('').sort();
 		var i;
 		for (i = 0; i < sortedAnagram.length; i++) {
@@ -51,19 +53,19 @@ function solve(anagram) {
 	var possibilities = [];
 	var i;
 	var countedWords = 0;
+	// Check the longest words first
 	for (i = sortedAnagram.length; i >= 1; i--) {
 		if (words[i] === undefined) continue;
-		words[i].forEach(function(element, index, array) {
+		words[i].forEach(function(element) {
 			if (existsInAnagram(element)) possibilities.push(element);
 		});
 		countedWords += words[i].length;
 		if (possibilities.length !== 0) {
-			console.log(util.format('%dms, searched %d words. Best answer has %d letters:',
-				new Date() - startTime, countedWords, i));
 			break;
 		}
 	}
+	console.log(util.format('%d words searched', countedWords));
 	return possibilities.sort();
 }
 
-exports.solve = solve;
+module.exports = new Susie();
