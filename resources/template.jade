@@ -1,0 +1,22 @@
+html
+	head
+		include head.jade
+	body
+		h1
+			| Let's 
+			del play
+			|  solve Countdown!
+		div
+			p Either type your own anagram below or hit shuffle.
+		div
+			input#board(value=anagram)
+		div
+			button(type='button' onclick='submit()') Solve
+			a(href='/') Shuffle
+		div#results
+			h2 Best answers:
+			each val in bestAnswers.length ? bestAnswers : ['No words found']
+				p= val
+		include footer.jade
+		script
+			include ../dist/submit.min.js

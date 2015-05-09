@@ -2,6 +2,8 @@ var fs = require('fs');
 var util = require('util');
 var sprintf = require('sprintf-js').sprintf;
 var words = {};
+var vowels = ['a','e','i','o','u'];
+var consonants = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','y','z'];
 
 var Susie = function() {
 	console.log('loading word file');
@@ -26,6 +28,21 @@ var Susie = function() {
 function numberSort(a,b) {
 	return a - b;
 }
+
+Susie.prototype.createAnagram = function() {
+	var numberOfLetters = 9;
+	var numberOfVowels = Math.floor((Math.random() * 2) + 3);
+	var numberOfConsonants = numberOfLetters - numberOfVowels;
+	var anagram = [];
+	for (var i = 0; i < numberOfConsonants; i++) {
+		anagram.push(getRandomElement(consonants));
+	}
+	for (var i = 0; i < numberOfVowels; i++) {
+		anagram.push(getRandomElement(vowels));
+	}
+	anagram = shuffle(anagram);
+	return arrayToString(anagram);
+};
 
 /**
  * e.g.
@@ -66,6 +83,24 @@ Susie.prototype.solve = function(anagram) {
 	}
 	console.log(util.format('%d words searched', countedWords));
 	return possibilities.sort();
+};
+
+function getRandomElement(array) {
+	var index = Math.floor(Math.random() * array.length);
+	return array[index];
+}
+
+function shuffle(o){
+	for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+	return o;
+}
+
+function arrayToString(array) {
+	var output = '';
+	for (var i = 0; i < array.length; i++) {
+		output += array[i];
+	}
+	return output;
 }
 
 module.exports = new Susie();
