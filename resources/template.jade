@@ -17,9 +17,15 @@ html
 			h2 Best answers:
 			if bestAnswers !== undefined
 				if bestAnswers.length > 0
-					p= bestAnswers[0].length + ' letters'
+					- var bestLength = bestAnswers[0].length
+					p= bestLength + ' letters'
 					each val in bestAnswers
-						p= val
+						if val.length < bestLength
+							p
+								small= val
+						else
+							p
+								strong= val
 				else
 					p No words found
 			else

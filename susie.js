@@ -77,6 +77,7 @@ Susie.prototype.solve = function(anagram) {
 	var possibilities = [];
 	var i;
 	var countedWords = 0;
+	var breakNext = false;
 	// Check the longest words first
 	for (i = sortedAnagram.length; i >= 1; i--) {
 		if (words[i] === undefined) continue;
@@ -85,12 +86,15 @@ Susie.prototype.solve = function(anagram) {
 		});
 		countedWords += words[i].length;
 		if (possibilities.length !== 0) {
-			break;
+			if (breakNext) break;
+			else {
+				breakNext = true;
+				continue;
+			}
 		}
 	}
-	var output = possibilities.sort();
-	console.log(util.format('Request to solve %s\n%d words searched, %dms\n', anagram.toUpperCase(), countedWords, new Date() - startTime) + output);
-	return output;
+	console.log(util.format('Request to solve %s\n%d words searched, %dms\n', anagram.toUpperCase(), countedWords, new Date() - startTime) + possibilities);
+	return possibilities;
 };
 
 function getRandomElement(array) {
