@@ -20,7 +20,10 @@ html
 					- var bestLength = bestAnswers[0].length
 					p= bestLength + ' letters'
 					each val in bestAnswers
-						if val.length < bestLength
+						if val.length === anagram.length
+							h2
+								em= val
+						else if val.length < bestLength
 							p
 								small= val
 						else
