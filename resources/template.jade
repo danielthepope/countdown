@@ -15,8 +15,15 @@ html
 			a(href='/') Shuffle
 		div#results
 			h2 Best answers:
-			each val in bestAnswers.length ? bestAnswers : ['No words found']
-				p= val
+			if bestAnswers !== undefined
+				if bestAnswers.length > 0
+					p= bestAnswers[0].length + ' letters'
+					each val in bestAnswers
+						p= val
+				else
+					p No words found
+			else
+				p Hit solve to find out!
 		include footer.jade
 		script
 			include ../dist/submit.min.js

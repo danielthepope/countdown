@@ -63,6 +63,7 @@ Susie.prototype.createAnagram = function() {
  *   return false
  */
 Susie.prototype.solve = function(anagram) {
+	var startTime = new Date();
 	var sortedAnagram = anagram.toUpperCase().split('').sort();
 	function existsInAnagram(element) {
 		var sortedWord = element.split('').sort();
@@ -87,8 +88,9 @@ Susie.prototype.solve = function(anagram) {
 			break;
 		}
 	}
-	console.log(util.format('%d words searched', countedWords));
-	return possibilities.sort();
+	var output = possibilities.sort();
+	console.log(util.format('Request to solve %s\n%d words searched, %dms\n', anagram.toUpperCase(), countedWords, new Date() - startTime) + output);
+	return output;
 };
 
 function getRandomElement(array) {

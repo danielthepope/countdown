@@ -20,7 +20,7 @@ function compile(locals) {
 
 app.get('/', function(request, response) {
 	var anagram = susie.createAnagram();
-	response.send(compile({bestAnswers:['Hit Solve to find out!'],anagram:anagram}));
+	response.send(compile({anagram:anagram}));
 });
 
 app.get('/:anagram(\\w+)', function(request, response) {
