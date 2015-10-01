@@ -1,5 +1,4 @@
 body {
-	font-family: sans-serif;
 	background-color: #B1D2F2;
 	text-align: center;
 }
@@ -7,24 +6,17 @@ body {
 #board {
 	background-color: #0041A5;
 	color: #fff;
-	font-size: 50px;
+	font-size: 28px;
 	font-weight: bold;
 	text-align: center;
-	letter-spacing: 15px;
+	letter-spacing: 0.3em;
 	text-transform: uppercase;
-	border-style: solid;
 }
 
-button {
-	width: 90px;
-	height: 40px;
+.btn {
 	margin: 10px;
 }
 
 #results p {
 	font-size: large;
-}
-
-div {
-	margin-bottom: 10px;
 }

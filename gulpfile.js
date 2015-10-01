@@ -1,20 +1,15 @@
 var gulp = require('gulp');
 var server = require('gulp-develop-server');
 var jade = require('gulp-jade');
+var concat = require('gulp-concat');
 var cssmin = require('gulp-cssmin');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
+var uncss = require('gulp-uncss');
 
 gulp.task('default', ['build', 'watch', 'server:start', 'server:restart']);
 
-gulp.task('build', ['minifycss', 'minifyjs', 'staticjade']);
-
-gulp.task('minifycss', function() {
-	return gulp.src('./resources/*.css')
-		.pipe(cssmin())
-		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest('./dist'));
-});
+gulp.task('build', ['uncss', 'minifyjs']);
 
 gulp.task('minifyjs', function() {
 	return gulp.src('./resources/*.js')
@@ -23,27 +18,37 @@ gulp.task('minifyjs', function() {
 		.pipe(gulp.dest('./dist'));
 });
 
-gulp.task('staticjade', ['minifycss', 'minifyjs'], function() {
-	return gulp.src('./resources/static/*.jade')
+gulp.task('pre-uncss', function() {
+	return gulp.src('./resources/template.jade')
 		.pipe(jade({
 			doctype: 'html',
 			locals: {
-				pageTitle: 'Countdown'
+				pageTitle: 'Countdown',
+				anagram: '',
+				requireHead: false
 			}
 		}))
-		.pipe(gulp.dest('./public'));
+		.pipe(gulp.dest('./dist'));
 });
 
+gulp.task('uncss', ['pre-uncss'], function() {
+	return gulp.src(['./node_modules/bootstrap/dist/css/bootstrap.css', './resources/style.css'])
+		.pipe(uncss({
+			html: ['./dist/template.html']
+		}))
+		.pipe(concat('style.min.css'))
+		.pipe(cssmin())
+		.pipe(gulp.dest('./public'))
+})
+
 gulp.task('watch', function() {
-	gulp.watch('./resources/**/*.jade', ['build']);
-	gulp.watch('./resources/*.css', ['build']);
-	gulp.watch('./resources/*.js', ['build']);
+	gulp.watch(['./resources/**/*.jade', './resources/*.css', './resources/*.js'], ['build']);
 });
 
 gulp.task('server:start', function() {
 	server.listen( { path: './server.js' } );
 });
 
-gulp.task('server:restart', ['staticjade'], function() {
+gulp.task('server:restart', function() {
 	gulp.watch('./*.js', server.restart);
 });
