@@ -7,7 +7,7 @@ var consonants = ['b','b','c','c','d','d','d','d','f','f','g','g','g','h','h','j
 
 var Susie = function() {
 	console.log('loading word file');
-	var wordData = fs.readFileSync('resources/en_GB-large.txt', 'utf8');
+	var wordData = fs.readFileSync('resources/words.txt', 'utf8');
 	var allWords = wordData.split('\r\n');
 	var filteredWords = allWords.filter(function(value) {
 		var matches = value.match(/[a-z]*/);
