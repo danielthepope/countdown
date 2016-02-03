@@ -31,8 +31,8 @@ The same interface that's live at [countdown.danielthepope.co.uk](http://countdo
 ![tnetennba](resources/readme/tnetennba.png)
 
 # Word list
-The word list in use is from [Aspell](http://wordlist.aspell.net/dicts/). The full list is filtered for my program to remove proper nouns and those with apostrophes. The list comes with the following copyright notice.
+The word list in use is the [Moby word list](http://icon.shef.ac.uk/Moby/mwords.html). It is in the public domain.
 
-Copyright 2000-2015 by Kevin Atkinson
+`words.txt` is a combination of `113809of.fic` and `4160offi.cia`, the two official crossword files in the Moby collection.
 
-Permission to use, copy, modify, distribute and sell these word lists, the associated scripts, the output created from the scripts, and its documentation for any purpose is hereby granted without fee, provided that the above copyright notice appears in all copies and that both that copyright notice and this permission notice appear in supporting documentation. Kevin Atkinson makes no representations about the suitability of this array for any purpose. It is provided "as is" without express or implied warranty.
+I previously used the list from [Aspell](http://wordlist.aspell.net/dicts/).
