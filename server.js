@@ -4,7 +4,7 @@ var jade = require('jade');
 var util = require('util');
 var susie = require('./susie.js');
 
-var port = process.env.PORT || 3000;
+var config = require('./countdownconfig.js');
 
 var app = express();
 
@@ -23,12 +23,19 @@ app.get('/', function(request, response) {
 
 app.get('/:anagram(\\w+)', function(request, response) {
 	var anagram = request.params.anagram;
-	var bestAnswers = susie.solve(anagram);
+	var bestAnswers = susie.solve(anagram, 1);
 	response.send(compile({bestAnswers:bestAnswers,anagram:anagram}));
 });
 
+app.get('/api/solve/:anagram(\\w+)', function(request, response) {
+	var anagram = request.params.anagram;
+	var variance = parseInt(request.query.variance) || 0;
+	if (variance === -1) variance = undefined;
+	response.send(susie.solve(anagram, variance));
+})
+
 app.use(express.static('public'));
 
-var server = app.listen(port, function() {
-	console.log('server listening on port %s', port);
+var server = app.listen(config.port, function() {
+	console.log('server listening on port %s', config.port);
 });

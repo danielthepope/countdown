@@ -51,6 +51,10 @@ Susie.prototype.createAnagram = function() {
 };
 
 /**
+ * anagram: letters to solve (string)
+ * variance: variance in solution lengths i.e. if best solution has 7 letters,
+ *   a variance of 2 will also include 6 and 5 letters
+ * 
  * e.g.
  * sorted word = EHLLO
  * anagram     = AEFHLLOP
@@ -62,11 +66,11 @@ Susie.prototype.createAnagram = function() {
  *     Check word length. If 0, return true.
  *   return false
  */
-Susie.prototype.solve = function(anagram) {
+Susie.prototype.solve = function(anagram, variance) {
 	var startTime = new Date();
 	var sortedAnagram = anagram.toUpperCase().split('').sort();
-	function existsInAnagram(element) {
-		var sortedWord = element.split('').sort();
+	function existsInAnagram(word) {
+		var sortedWord = word.split('').sort();
 		var i;
 		for (i = 0; i < sortedAnagram.length; i++) {
 			if (sortedWord[0] === sortedAnagram[i]) sortedWord = sortedWord.slice(1);
@@ -77,20 +81,17 @@ Susie.prototype.solve = function(anagram) {
 	var possibilities = [];
 	var i;
 	var countedWords = 0;
-	var breakNext = false;
+	var levelsSolved = 0;
 	// Check the longest words first
 	for (i = sortedAnagram.length; i >= 1; i--) {
 		if (words[i] === undefined) continue;
-		words[i].forEach(function(element) {
-			if (existsInAnagram(element)) possibilities.push(element);
+		words[i].forEach(function(word) {
+			if (existsInAnagram(word)) possibilities.push(word);
 		});
 		countedWords += words[i].length;
 		if (possibilities.length !== 0) {
-			if (breakNext) break;
-			else {
-				breakNext = true;
-				continue;
-			}
+			if (variance !== undefined && levelsSolved >= variance) break;
+			levelsSolved++;
 		}
 	}
 	console.log(util.format('Request to solve %s\n%d words searched, %dms\n', anagram.toUpperCase(), countedWords, new Date() - startTime) + possibilities);
