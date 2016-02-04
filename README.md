@@ -36,3 +36,6 @@ The word list in use is the [Moby word list](http://icon.shef.ac.uk/Moby/mwords.
 `words.txt` is a combination of `113809of.fic` and `4160offi.cia`, the two official crossword files in the Moby collection.
 
 I previously used the list from [Aspell](http://wordlist.aspell.net/dicts/).
+
+# API
+As well as a web interface, Countdown serves its own API. It's available through [Mashape](https://market.mashape.com/danielthepope/countdown).
