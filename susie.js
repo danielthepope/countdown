@@ -86,7 +86,14 @@ Susie.prototype.solve = function(anagram, variance) {
 	for (i = sortedAnagram.length; i >= 1; i--) {
 		if (words[i] === undefined) continue;
 		words[i].forEach(function(word) {
-			if (existsInAnagram(word)) possibilities.push(word);
+			if (existsInAnagram(word)) {
+				var wordObject = {
+					word: word,
+					length: word.length,
+					conundrum: word.length === sortedAnagram.length
+				};
+				possibilities.push(wordObject);
+			}
 		});
 		countedWords += words[i].length;
 		if (possibilities.length !== 0) {
@@ -94,7 +101,7 @@ Susie.prototype.solve = function(anagram, variance) {
 			levelsSolved++;
 		}
 	}
-	console.log(util.format('Request to solve %s\n%d words searched, %dms\n', anagram.toUpperCase(), countedWords, new Date() - startTime) + possibilities);
+	console.log(util.format('Request to solve %s\n%d words searched, %dms\n', anagram.toUpperCase(), countedWords, new Date() - startTime) + JSON.stringify(possibilities));
 	return possibilities;
 };
 
