@@ -52,6 +52,10 @@ app.get('/api/solve/:anagram(\\w+)', function(request, response) {
 	return response.send(susie.solve(anagram, variance));
 })
 
+app.get('/api/cache', function(request, response) {
+	response.send(answerCache);
+})
+
 app.use(express.static('public'));
 
 var server = app.listen(config.port, function() {
