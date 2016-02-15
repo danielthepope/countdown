@@ -20,16 +20,17 @@ html
 				if bestAnswers.length > 0
 					- var bestLength = bestAnswers[0].length
 					p= bestLength + ' letters'
-					each val in bestAnswers
-						if val.conundrum
-							h2
-								em= val.word
-						else if val.length < bestLength
-							p
-								small= val.word
-						else
-							p
-								strong= val.word
+					div.row
+						each val in bestAnswers
+							if val.conundrum
+								h2.col-xs-12.result
+									em= val.word
+							else if val.length < bestLength
+								p.col-xs-6.col-sm-4.col-md-3.col-lg-2.result
+									small= val.word
+							else
+								p.col-xs-6.col-sm-4.col-md-3.col-lg-2.result
+									strong= val.word
 				else
 					p No words found
 			else

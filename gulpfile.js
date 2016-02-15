@@ -25,7 +25,8 @@ gulp.task('pre-uncss', function() {
 			locals: {
 				pageTitle: 'Countdown',
 				anagram: '',
-				requireHead: false
+				requireHead: false,
+				bestAnswers: ['tnetennba']
 			}
 		}))
 		.pipe(gulp.dest('./dist'));
