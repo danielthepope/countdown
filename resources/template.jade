@@ -13,14 +13,15 @@ html
 				input.form-control.input-lg#board(value=anagram onkeypress='checkEnter(event)')
 		div
 			button.btn.btn-lg.btn-success(type='button' onclick='submit()') Solve
-			a.btn.btn-sm.btn-info(href='/') New letters
-		div#results
+			// a.btn.btn-sm.btn-info(href='/') New letters
+			button.btn.btn-sm.btn-info(type='button' onclick='createAnagram()') New letters
+		div#results_frame
 			h2 Best answers:
 			if bestAnswers !== undefined
 				if bestAnswers.length > 0
 					- var bestLength = bestAnswers[0].length
-					p= bestLength + ' letters'
-					div.row
+					div.row#results
+						p= bestLength + ' letters'
 						each val in bestAnswers
 							if val.conundrum
 								h2.col-xs-12.result
@@ -32,9 +33,11 @@ html
 								p.col-xs-6.col-sm-4.col-md-3.col-lg-2.result
 									strong= val.word
 				else
-					p No words found
+					div.row#results
+						p No words found
 			else
-				p Hit solve to find out!
+				div.row#results
+					p Hit solve to find out!
 		include footer.jade
 		script
 			include ../dist/submit.min.js

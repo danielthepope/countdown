@@ -47,7 +47,7 @@ Susie.prototype.createAnagram = function() {
 		anagram.push(getRandomElement(vowels));
 	}
 	anagram = shuffle(anagram);
-	return arrayToString(anagram);
+	return anagram.join('');
 };
 
 /**
@@ -113,14 +113,6 @@ function getRandomElement(array) {
 function shuffle(o){
 	for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
 	return o;
-}
-
-function arrayToString(array) {
-	var output = '';
-	for (var i = 0; i < array.length; i++) {
-		output += array[i];
-	}
-	return output;
 }
 
 module.exports = new Susie();
