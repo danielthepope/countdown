@@ -11,19 +11,33 @@ var app = express();
 var jadeOptions = {doctype:'html'};
 var jadeGlobals = {pageTitle:'Countdown'};
 
+var answerCache = {};
+
 function compile(locals) {
 	var fn = jade.compileFile('resources/template.jade', jadeOptions);
 	return fn(extend({}, jadeGlobals, locals));
 }
 
+function solveAndAddToCache(anagram) {
+	answerCache[anagram] = susie.solve(anagram, 1);
+	console.log('Added %s to the cache', anagram);
+	setTimeout(function() {delete answerCache[anagram]}, 600000);
+	return answerCache[anagram];
+}
+
 app.get('/', function(request, response) {
-	var anagram = susie.createAnagram();
-	response.send(compile({anagram:anagram}));
+	response.send(compile({anagram:''}));
 });
+
+app.get('/cache/:anagram(\\w+)', function(request, response) {
+	var anagram = request.params.anagram;
+	solveAndAddToCache(anagram)
+	response.sendStatus(200);
+})
 
 app.get('/:anagram(\\w+)', function(request, response) {
 	var anagram = request.params.anagram;
-	var bestAnswers = susie.solve(anagram, 1);
+	var bestAnswers = answerCache[anagram] || solveAndAddToCache(anagram);
 	response.send(compile({bestAnswers:bestAnswers,anagram:anagram}));
 });
 
