@@ -6,10 +6,10 @@ var words = {};
 var Susie = function() {
 	console.log('loading word file');
 	var wordData = fs.readFileSync('resources/words.txt', 'utf8');
-	var allWords = wordData.split('\r\n');
+	var allWords = wordData.split('---')[1].split('\n');
 	var filteredWords = allWords.filter(function(value) {
-		var matches = value.match(/[a-z]*/);
-		return value.length > 1 && matches !== null && matches[0].length == value.length;
+		var matches = value.match(/^[a-z][a-z]+$/);
+		return matches !== null;
 	});
 	filteredWords.push('a');
 	filteredWords.push('i');

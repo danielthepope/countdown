@@ -31,11 +31,53 @@ The same interface that's live at [countdown.danielthepope.co.uk](http://countdo
 ![tnetennba](resources/readme/tnetennba.png)
 
 # Word list
-The word list in use is the [Moby word list](http://icon.shef.ac.uk/Moby/mwords.html). It is in the public domain.
+I am using the [Aspell](http://wordlist.aspell.net/dicts/) word list.
+```
+Custom wordlist generated from http://app.aspell.net/create using SCOWL
+with parameters:
+  diacritic: strip
+  max_size: 70
+  max_variant: 3
+  special: <none>
+  spelling: GBs GBz
 
-`words.txt` is a combination of `113809of.fic` and `4160offi.cia`, the two official crossword files in the Moby collection.
+Using Git Commit From: Tue Sep 13 01:33:25 2016 -0400 [5742c16]
 
-I previously used the list from [Aspell](http://wordlist.aspell.net/dicts/).
+Copyright 2000-2014 by Kevin Atkinson
+
+  Permission to use, copy, modify, distribute and sell these word
+  lists, the associated scripts, the output created from the scripts,
+  and its documentation for any purpose is hereby granted without fee,
+  provided that the above copyright notice appears in all copies and
+  that both that copyright notice and this permission notice appear in
+  supporting documentation. Kevin Atkinson makes no representations
+  about the suitability of this array for any purpose. It is provided
+  "as is" without express or implied warranty.
+
+Copyright (c) J Ross Beresford 1993-1999. All Rights Reserved.
+
+  The following restriction is placed on the use of this publication:
+  if The UK Advanced Cryptics Dictionary is used in a software package
+  or redistributed in any form, the copyright notice must be
+  prominently displayed and the text of this document must be included
+  verbatim.
+
+  There are no other restrictions: I would like to see the list
+  distributed as widely as possible.
+
+Special credit also goes to Alan Beale <biljir@pobox.com> as he has
+given me an incredible amount of feedback and created a number of
+special lists (those found in the Supplement) in order to help improve
+the overall quality of SCOWL.
+
+Many sources were used in the creation of SCOWL, most of them were in
+the public domain or used indirectly.  For a full list please see the
+SCOWL readme.
+
+http://wordlist.aspell.net/
+```
+
+I've previously used the [Moby word list](http://icon.shef.ac.uk/Moby/mwords.html).
 
 # API
 As well as a web interface, Countdown serves its own API. It's available through [Mashape](https://market.mashape.com/danielthepope/countdown).
