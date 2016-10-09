@@ -1,32 +1,32 @@
 body {
-	background-color: #B1D2F2;
-	text-align: center;
+  background-color: #B1D2F2;
+  text-align: center;
 }
 
 #board {
-	background-color: #0041A5;
-	color: #fff;
-	font-size: 28px;
-	font-weight: bold;
-	text-align: center;
-	letter-spacing: 0.3em;
-	text-transform: uppercase;
+  background-color: #0041A5;
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
 }
 
 .btn {
-	margin: 10px;
+  margin: 10px;
 }
 
 #results_frame p {
-	font-size: large;
+  font-size: large;
 }
 
 #footer {
-	border-top: #5C8096 1px solid;
-	padding-top: 10px;
-	margin-top: 20px;
+  border-top: #5C8096 1px solid;
+  padding-top: 10px;
+  margin-top: 20px;
 }
 
 .result {
-	padding: 7px;
+  padding: 7px;
 }
