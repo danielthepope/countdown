@@ -20,22 +20,23 @@ html
 			if bestAnswers !== undefined
 				if bestAnswers.length > 0
 					- var bestLength = bestAnswers[0].length
-					div.row#results
-						p= bestLength + ' letters'
-						each val in bestAnswers
-							if val.conundrum
-								h2.col-xs-12.result
-									em
-										a(href="https://en.oxforddictionaries.com/definition/"+val.word target="_blank")= val.word
-							else if val.length < bestLength
-								p.col-xs-6.col-sm-4.col-md-3.col-lg-2.result
-									small
-										a(href="https://en.oxforddictionaries.com/definition/"+val.word target="_blank")= val.word
-							else
-								p.col-xs-6.col-sm-4.col-md-3.col-lg-2.result
-									strong
-										a(href="https://en.oxforddictionaries.com/definition/"+val.word target="_blank")= val.word
-					p.row Click words for their definition
+					div#results
+						div.row
+							p= bestLength + ' letters'
+							each val in bestAnswers
+								if val.conundrum
+									h2.col-xs-12.result
+										em
+											a(href="https://en.oxforddictionaries.com/definition/"+val.word target="_blank")= val.word
+								else if val.length < bestLength
+									p.col-xs-6.col-sm-4.col-md-3.col-lg-2.result
+										small
+											a(href="https://en.oxforddictionaries.com/definition/"+val.word target="_blank")= val.word
+								else
+									p.col-xs-6.col-sm-4.col-md-3.col-lg-2.result
+										strong
+											a(href="https://en.oxforddictionaries.com/definition/"+val.word target="_blank")= val.word
+						p.row Click words for their definition
 				else
 					div.row#results
 						p No words found
