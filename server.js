@@ -1,6 +1,6 @@
 var express = require('express');
 var extend = require('extend');
-var jade = require('jade');
+var pug = require('pug');
 var util = require('util');
 var susie = require('./susie.js');
 
@@ -8,14 +8,14 @@ var config = require('./countdownconfig.js');
 
 var app = express();
 
-var jadeOptions = { doctype: 'html' };
-var jadeGlobals = { pageTitle: 'Countdown' };
+var pugOptions = { doctype: 'html' };
+var pugGlobals = { pageTitle: 'Countdown' };
 
 var answerCache = {};
 
 function compile(locals) {
-  var fn = jade.compileFile('resources/template.jade', jadeOptions);
-  return fn(extend({}, jadeGlobals, locals));
+  var fn = pug.compileFile('resources/template.pug', pugOptions);
+  return fn(extend({}, pugGlobals, locals));
 }
 
 function solveAndAddToCache(anagram) {
