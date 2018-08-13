@@ -17,12 +17,11 @@
   },
   "homepage": "https://github.com/danielthepope/countdown",
   "dependencies": {
-    "bootstrap": "^3.3.5",
-    "express": "^4.12.3",
-    "extend": "^2.0.1",
-    "jade": "^1.9.2",
-    "sprintf-js": "^1.0.2",
-    "two.js": "^0.4.0"
+    "bootstrap": "^3.3.7",
+    "express": "^4.16.2",
+    "extend": "^3.0.1",
+    "pug": "^2.0.0-rc.4",
+    "sprintf-js": "^1.0.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -31,7 +30,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-cssmin": "^0.1.7",
     "gulp-develop-server": "^0.4.2",
-    "gulp-jade": "^1.0.0",
+    "gulp-pug": "^3.3.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.2.0",
     "gulp-uncss": "^1.0.4",

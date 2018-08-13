@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var server = require('gulp-develop-server');
-var jade = require('gulp-jade');
+var pug = require('gulp-pug');
 var concat = require('gulp-concat');
 var cssmin = require('gulp-cssmin');
 var rename = require('gulp-rename');
@@ -19,8 +19,8 @@ gulp.task('minifyjs', function() {
 });
 
 gulp.task('pre-uncss', function() {
-  return gulp.src('./resources/template.jade')
-    .pipe(jade({
+  return gulp.src('./resources/template.pug')
+    .pipe(pug({
       doctype: 'html',
       locals: {
         pageTitle: 'Countdown',
@@ -43,7 +43,7 @@ gulp.task('uncss', ['pre-uncss'], function() {
 })
 
 gulp.task('watch', function() {
-  gulp.watch(['./resources/**/*.jade', './resources/*.css', './resources/*.js'], ['build']);
+  gulp.watch(['./resources/**/*.pug', './resources/*.css', './resources/*.js'], ['build']);
 });
 
 gulp.task('server:start', function() {
