@@ -88,4 +88,6 @@ Susie.prototype.solve = function (anagram, variance) {
   return possibilities;
 };
 
+Susie.prototype.words = words;
+
 module.exports = new Susie();

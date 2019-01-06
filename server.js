@@ -21,7 +21,7 @@ function compile(locals) {
 function solveAndAddToCache(anagram) {
   answerCache[anagram] = susie.solve(anagram, 1);
   console.log('Added %s to the cache', anagram);
-  setTimeout(function () { delete answerCache[anagram] }, 600000);
+  setTimeout(function () { delete answerCache[anagram]; }, 600000);
   return answerCache[anagram];
 }
 
@@ -31,9 +31,9 @@ app.get('/', function (request, response) {
 
 app.get('/cache/:anagram(\\w+)', function (request, response) {
   var anagram = request.params.anagram;
-  solveAndAddToCache(anagram)
+  solveAndAddToCache(anagram);
   response.sendStatus(200);
-})
+});
 
 app.get('/:anagram(\\w+)', function (request, response) {
   var anagram = request.params.anagram;
@@ -50,11 +50,19 @@ app.get('/api/solve/:anagram(\\w+)', function (request, response) {
   if (secret !== config.mashape_secret) return response.status(401).send('Invalid X-Mashape-Proxy-Secret');
   if (variance === -1) variance = undefined;
   return response.send(susie.solve(anagram, variance));
-})
+});
 
 app.get('/api/cache', function (request, response) {
   response.send(answerCache);
-})
+});
+
+app.get('/api/words', function (request, response) {
+  response.send(susie.words);
+});
+
+app.get('/api/words/:length', function (request, response) {
+  response.send(susie.words[request.params.length]);
+});
 
 app.use(express.static('public'));
 
