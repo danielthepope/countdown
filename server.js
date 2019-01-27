@@ -1,7 +1,5 @@
 var express = require('express');
-var extend = require('extend');
 var pug = require('pug');
-var util = require('util');
 var susie = require('./susie.js');
 
 var config = require('./countdownconfig.js');
@@ -9,13 +7,12 @@ var config = require('./countdownconfig.js');
 var app = express();
 
 var pugOptions = { doctype: 'html' };
-var pugGlobals = { pageTitle: 'Countdown' };
 
 var answerCache = {};
 
 function compile(locals) {
   var fn = pug.compileFile('resources/template.pug', pugOptions);
-  return fn(extend({}, pugGlobals, locals));
+  return fn(locals);
 }
 
 function solveAndAddToCache(anagram) {
