@@ -1,15 +1,11 @@
 var gulp = require('gulp');
-var server = require('gulp-develop-server');
-var pug = require('gulp-pug');
+var cleanCSS = require('gulp-clean-css');
 var concat = require('gulp-concat');
-var cssmin = require('gulp-cssmin');
+var pug = require('gulp-pug');
+var purify = require('gulp-purifycss');
 var rename = require('gulp-rename');
+var server = require('gulp-develop-server');
 var uglify = require('gulp-uglify');
-var uncss = require('gulp-uncss');
-
-gulp.task('default', ['build', 'watch', 'server:start', 'server:restart']);
-
-gulp.task('build', ['uncss', 'minifyjs']);
 
 gulp.task('minifyjs', function() {
   return gulp.src('./resources/*.js')
@@ -32,18 +28,16 @@ gulp.task('pre-uncss', function() {
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('uncss', ['pre-uncss'], function() {
+gulp.task('uncss', gulp.series('pre-uncss', function() {
   return gulp.src(['./node_modules/bootstrap/dist/css/bootstrap.css', './resources/style.css'])
-    .pipe(uncss({
-      html: ['./dist/template.html']
-    }))
+    .pipe(purify(['./dist/template.html']))
     .pipe(concat('style.min.css'))
-    .pipe(cssmin())
-    .pipe(gulp.dest('./public'))
-})
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest('./public'));
+}));
 
 gulp.task('watch', function() {
-  gulp.watch(['./resources/**/*.pug', './resources/*.css', './resources/*.js'], ['build']);
+  gulp.watch(['./resources/**/*.pug', './resources/*.css', './resources/*.js'], gulp.series('build'));
 });
 
 gulp.task('server:start', function() {
@@ -53,3 +47,7 @@ gulp.task('server:start', function() {
 gulp.task('server:restart', function() {
   gulp.watch('./*.js', server.restart);
 });
+
+gulp.task('build', gulp.parallel('uncss', 'minifyjs'));
+
+gulp.task('default', gulp.parallel('build', 'server:start', 'watch', 'server:restart'));
