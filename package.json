@@ -1,11 +1,12 @@
 {
   "name": "countdown",
   "version": "0.0.0",
-  "description": "A game bearing no resemblance to the show on Channel 4 whatsoever",
+  "description": "An anagram solver bearing no resemblance to the show on Channel 4 whatsoever",
   "main": "server.js",
   "scripts": {
-    "build": "./node_modules/.bin/gulp build",
-    "test": "./node_modules/.bin/cucumberjs ./test/"
+    "build": "gulp build",
+    "develop": "gulp",
+    "test": "cucumberjs ./test/"
   },
   "repository": {
     "type": "git",
