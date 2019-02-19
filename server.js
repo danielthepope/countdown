@@ -41,7 +41,7 @@ app.get('/api/words/:length', function (request, response) {
   response.send(susie.words[request.params.length]);
 });
 
-app.use(express.static('public'));
+app.use(express.static('public', {maxAge: 3600000}));
 
 var server = app.listen(config.port, function () {
   console.log('server listening on port %s', config.port);
