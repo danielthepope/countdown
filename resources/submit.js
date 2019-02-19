@@ -32,9 +32,6 @@ function createAnagram() {
   }
   anagram = shuffle(anagram).join('');
   document.getElementById('board').value = anagram;
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "/cache/"+anagram, true);
-  xhttp.send();
 }
 
 function getRandomElement(array) {
