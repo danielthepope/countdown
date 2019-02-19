@@ -37,7 +37,6 @@
     "gulp-purifycss": "^0.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.2.0",
-    "html5": "^1.0.5",
     "zombie": "^6.1.4"
   }
 }

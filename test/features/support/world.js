@@ -1,10 +1,10 @@
 var zombie = require('zombie');
-var HTML5  = require('html5');
-var server = require('../../../server');
 var config = require('../../../countdownconfig.js');
 
+require('../../../server'); // Start server
+
 var World = module.exports = function(){
-  this.browser = new zombie({runScripts:true, debug:false, htmlParser: HTML5});
+  this.browser = new zombie({runScripts:true, debug:false});
 
   this.page = function(path){
    return "http://localhost:" + config.port + path
