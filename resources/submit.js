@@ -24,19 +24,20 @@ function createAnagram() {
   var numberOfVowels = Math.floor((Math.random() * 2) + 3);
   var numberOfConsonants = numberOfLetters - numberOfVowels;
   var anagram = [];
+  var clonedConsonants = consonants.slice(0);
+  var clonedVowels = vowels.slice(0);
   for (var i = 0; i < numberOfConsonants; i++) {
-    anagram.push(getRandomElement(consonants));
+    anagram.push(getRandomElement(clonedConsonants));
   }
   for (var i = 0; i < numberOfVowels; i++) {
-    anagram.push(getRandomElement(vowels));
+    anagram.push(getRandomElement(clonedVowels));
   }
   anagram = shuffle(anagram).join('');
   document.getElementById('board').value = anagram;
 }
 
 function getRandomElement(array) {
-  var index = Math.floor(Math.random() * array.length);
-  return array[index];
+  return array.splice(Math.floor(Math.random() * array.length), 1);
 }
 
 function shuffle(o){
