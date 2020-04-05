@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-sudo docker build $(dirname $0) -t countdown:$(date +"%Y-%m-%d_%H-%M-%S") -t countdown
+docker build $(dirname $0) -t countdown:$(date +"%Y-%m-%d_%H-%M-%S") -t countdown
