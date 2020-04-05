@@ -2,7 +2,9 @@
 A word game solver bearing no resemblance to the show on Channel 4 whatsoever.
 
 # Getting started
-Usual node stuff. Make sure you have `gulp-cli` installed on your command line (`npm install gulp-cli -g`), then you can install using `npm install`.
+Requires Node.js (8+)
+
+Install dependencies using `npm install`, then run with `npm start`.
 
 # Basic usage
 ## Command line
@@ -24,9 +26,11 @@ e.g.
 ```
 
 ## Web interface
-Run the web server using `gulp`. It will default to port 3000. You can then go to [localhost:3000](http://localhost:3000).
+Run the web server using `npm start`. You can then go to [localhost:3000](http://localhost:3000).
 
-The same interface that's live at [countdown.danielthepope.co.uk](http://countdown.danielthepope.co.uk). Hitting that site will generate an anagram for you, or you can add the anagram of your choosing to the URL (e.g. [/tnetennba](http://countdown.danielthepope.co.uk/tnetennba)) and it will generate the results for you.
+By default, this app will run on port 3000, but you can change it by setting the `PORT` environment variable. e.g. `PORT=3001 npm start`
+
+This is the same interface that's live at [countdown.danielthepope.co.uk](https://countdown.danielthepope.co.uk). Hitting that site will generate an anagram for you, or you can add the anagram of your choosing to the URL (e.g. [/tnetennba](https://countdown.danielthepope.co.uk/tnetennba)) and it will generate the results for you.
 
 ![tnetennba](resources/readme/tnetennba.png)
 

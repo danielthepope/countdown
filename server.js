@@ -2,7 +2,7 @@ var express = require('express');
 var pug = require('pug');
 var susie = require('./susie.js');
 
-var config = require('./countdownconfig.js');
+var port = process.env.PORT || 3000;
 
 var app = express();
 
@@ -41,8 +41,8 @@ app.get('/api/words/:length', function (request, response) {
   response.send(susie.words[request.params.length]);
 });
 
-app.use(express.static('public', {maxAge: 3600000}));
+app.use(express.static('public', { maxAge: 3600000 }));
 
-var server = app.listen(config.port, function () {
-  console.log('server listening on port %s', config.port);
+var server = app.listen(port, function () {
+  console.log('server listening on port %s', port);
 });
