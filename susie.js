@@ -2,6 +2,7 @@ var fs = require('fs');
 var util = require('util');
 var sprintf = require('sprintf-js').sprintf;
 var words = {};
+var response_limit = parseInt(process.env.RESPONSE_LIMIT || 1000);
 
 var Susie = function () {
   console.log('loading word file');
@@ -62,23 +63,26 @@ Susie.prototype.solve = function (anagram, variance) {
     return false;
   }
   var possibilities = [];
-  var i;
+  var i, j;
   var countedWords = 0;
   var levelsSolved = 0;
   // Check the longest words first
   for (i = sortedAnagram.length; i >= 1; i--) {
     if (words[i] === undefined) continue;
-    words[i].forEach(function (word) {
-      if (existsInAnagram(word)) {
+    for (j = 0; j < words[i].length; j++) {
+      if (possibilities.length >= response_limit) {
+        break;
+      }
+      if (existsInAnagram(words[i][j])) {
         var wordObject = {
-          word: word,
-          length: word.length,
-          conundrum: word.length === sortedAnagram.length
+          word: words[i][j],
+          length: words[i][j].length,
+          conundrum: words[i][j].length === sortedAnagram.length
         };
         possibilities.push(wordObject);
       }
-    });
-    countedWords += words[i].length;
+      countedWords++;
+    };
     if (possibilities.length !== 0) {
       if (variance !== undefined && levelsSolved >= variance) break;
       levelsSolved++;
