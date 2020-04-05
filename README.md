@@ -80,4 +80,4 @@ http://wordlist.aspell.net/
 I've previously used the [Moby word list](http://icon.shef.ac.uk/Moby/mwords.html).
 
 # API
-As well as a web interface, Countdown serves its own API. It's available through [Mashape](https://market.mashape.com/danielthepope/countdown).
+As well as a web interface, Countdown serves its own API. It's available through [RapidAPI](https://rapidapi.com/danielthepope/api/countdown).
