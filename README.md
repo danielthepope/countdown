@@ -4,7 +4,11 @@ A word game solver bearing no resemblance to the show on Channel 4 whatsoever.
 # Getting started
 Requires Node.js (8+)
 
-Install dependencies using `npm install`, then run with `npm start`.
+```
+npm install    # Get dependencies
+npm run build  # JS and CSS optimisations
+npm start      # Run on port 3000
+```
 
 # Basic usage
 ## Command line

@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
-docker build $(dirname $0) -t countdown:$(date +"%Y-%m-%d_%H-%M-%S") -t countdown
+if hash docker 2>/dev/null; then
+    docker build $(dirname $0) -t countdown:$(date +"%Y-%m-%d_%H-%M-%S") -t countdown
+else
+    npm run build
+fi

@@ -6,7 +6,6 @@
   "scripts": {
     "build": "gulp build",
     "develop": "gulp",
-    "prestart": "gulp build",
     "test": "cucumberjs ./test/"
   },
   "repository": {

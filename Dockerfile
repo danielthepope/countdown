@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:10-alpine
 
 WORKDIR /usr/src/app
 
@@ -9,5 +9,7 @@ RUN npm install
 
 # Copy project directory.
 COPY . ./
+
+RUN npm run build
 
 CMD [ "npm", "start" ]
