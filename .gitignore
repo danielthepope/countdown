@@ -28,3 +28,4 @@ node_modules
 dist
 public/style.min.css
 .vscode/
+*.tar.gz
