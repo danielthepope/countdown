@@ -45,13 +45,13 @@ Custom wordlist generated from http://app.aspell.net/create using SCOWL
 with parameters:
   diacritic: strip
   max_size: 70
-  max_variant: 3
+  max_variant: 1
   special: <none>
   spelling: GBs GBz
 
-Using Git Commit From: Tue Sep 13 01:33:25 2016 -0400 [5742c16]
+Using Git Commit From: Mon Dec 7 20:14:35 2020 -0500 [5ef55f9]
 
-Copyright 2000-2014 by Kevin Atkinson
+Copyright 2000-2019 by Kevin Atkinson
 
   Permission to use, copy, modify, distribute and sell these word
   lists, the associated scripts, the output created from the scripts,
