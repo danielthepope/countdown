@@ -21,7 +21,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "express": "^4.17.1",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "sprintf-js": "^1.0.2"
   },
   "devDependencies": {
