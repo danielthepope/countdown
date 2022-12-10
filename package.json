@@ -20,7 +20,7 @@
   "homepage": "https://github.com/danielthepope/countdown",
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "pug": "^3.0.2",
     "sprintf-js": "^1.0.2"
   },
