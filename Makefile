@@ -1,3 +1,5 @@
+.PHONY: build zip
+
 build:
 	docker-compose build
 
