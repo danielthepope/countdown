@@ -31,7 +31,7 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.0",
     "gulp-develop-server": "^0.5.2",
-    "gulp-postcss": "^8.0.0",
+    "gulp-postcss": "^9.0.1",
     "gulp-pug": "^5.0.0",
     "gulp-purifycss": "^0.2.0",
     "gulp-rename": "^1.2.2",
