@@ -36,6 +36,6 @@
     "gulp-purifycss": "^0.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^3.0.2",
-    "zombie": "^6.1.4"
+    "puppeteer": "^19.11.1"
   }
 }
