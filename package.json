@@ -3,7 +3,11 @@
   "version": "0.0.0",
   "description": "An anagram solver bearing no resemblance to the show on Channel 4 whatsoever",
   "main": "server.js",
+  "engines": {
+    "node": ">=26"
+  },
   "scripts": {
+    "start": "node server.js",
     "build": "gulp build",
     "develop": "gulp",
     "test": "cucumberjs ./test/"
@@ -36,6 +40,6 @@
     "gulp-purifycss": "^0.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^3.0.2",
-    "puppeteer": "^19.11.1"
+    "puppeteer": "^25.16.0"
   }
 }

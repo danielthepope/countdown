@@ -2,7 +2,7 @@
 A word game solver bearing no resemblance to the show on Channel 4 whatsoever.
 
 # Getting started
-Requires Node.js (8+)
+Requires Node.js 26 or later.
 
 ```
 npm install    # Get dependencies
